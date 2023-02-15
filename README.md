@@ -1,11 +1,11 @@
 ![made-with-typescript](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square)
 
 <div align="center" >
-  <img align="center" src="https://lohxt1.github.io/_assets/todox.png" alt="TodoX"/>
+  <img align="center" src="https://lohxt1.github.io/_assets/semanticsearch.png" alt="Semantic search"/>
   <h1 
     align="center"
     style="text-decoration:underline;text-decoration-style:dashed"
-  >TodoX</h1>
+  >Twit-Sema</h1>
   <a href="https://github.com/trpc/trpc/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/trpc/trpc" />
   </a>
@@ -16,9 +16,7 @@
 </div>
 
 <p align="center" style="font-weight:400;font-size:20px;">
-  An minimal todo app with paswordless auth.<br />Created using the <a href="https://github.com/trpc/trpc/blob/main/LICENSE">
-    Next-magic-link-auth
-  </a> starter template
+  A semantic search app on top of Elon Musk's tweets.
 </p>
 
 #### Tech Stack
@@ -28,7 +26,6 @@
 - [Tailwind](https://tailwindcss.com/) – `CSS`
 - [Prisma](https://prisma.io/) – `ORM`
 - [Postgresql](https://railway.app/) – `database`
-- [NextAuth.js](https://next-auth.js.org/) – `auth`
 - [Vercel](https://vercel.com/) – `hosting`
 
 #### Running the code `locally`
@@ -37,8 +34,8 @@ To run the code locally, open _Terminal_ in your `projects` folder and take the 
 
 ```bash
 # STEP 1: Get sources from GitHub
-$ git clone https://github.com/lohxt1/todoX.git
-$ cd todoX
+$ git clone https://github.com/lohxt1/tw-semantic-search.git
+$ cd twit-semantic-search
 
 # STEP 2: Install the requirements
 $ npm install
@@ -67,7 +64,8 @@ $ npm run dev
 
 #### Implementation
 
-- `TodoX` is built as a standard Next.js application with a customizable middleware.
-- `Passwordless authentication` using custom email-links.
+- `TwitSema` is built as a standard Next.js application with a customizable middleware.
 - `Optimistic UI` achieved by the [SWR](https://github.com/vercel/swr) v2.0 library
-- [Planetscale](https://www.planetscale.com/) is used as the database for storing user data and todos. You can refer to the _Prisma schema_ [here](/prisma/schema.prisma).
+- [Postgresql](https://www.planetscale.com/) is used as the database for storing all the tweets data and search history. You can refer to the _Prisma schema_ [here](/prisma/schema.prisma).
+
+<img align="center" src="https://lohxt1.github.io/_assets/semanticsearchlight.png" alt="Semantic search"/>

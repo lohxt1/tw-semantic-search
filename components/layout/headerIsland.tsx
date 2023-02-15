@@ -1,78 +1,83 @@
 import Router from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 import { signOut, useSession } from "next-auth/react";
+import { useModeStore } from "stores/modeStore";
+import { useUserStore } from "stores/userStore";
 import { cn } from "utils/tailwind";
-import LoadingDots from "../shared/icons/loadingDots";
+import LoadingDots from "../shared/loadingDots";
 
 const HeaderIsland: React.FC = () => {
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
 
-  const [darkMode, toggleDarkMode] = useState(true);
+  const { toggleMode, darkMode } = useModeStore();
 
-  console.log(status);
+  const { userId, setUserId } = useUserStore();
 
-  const _handleClick = (e) => {
-    e.preventDefault();
-    if (session?.user?.email) {
-      signOut();
-    } else {
-      Router.push("/login");
+  useEffect(() => {
+    if (!userId) {
+      setUserId(nanoid());
     }
-  };
+  }, []);
 
   const _handleModeClick = (e) => {
     e.preventDefault();
-    toggleDarkMode((_) => !_);
+    toggleMode();
   };
 
   return (
     <nav
       className={cn(
-        "flex w-full justify-center",
-        "mb-5 px-5 py-5",
-        // "border-b border-slate-900",
+        "align-center flex w-full items-center justify-between",
+        "border-b border-gray-300",
+        "px-2 md:px-0",
       )}
     >
       <div
         className={cn(
-          "flex h-14 w-fit items-center justify-between align-middle md:min-w-[33%] lg:min-w-[25%]",
-          // "md:w-1/2",
-          "rounded-full border border-slate-900",
-          "px-5",
+          "align-center flex w-full items-center justify-between",
+          "sm:px-2",
+          // "border-silver border-b",
         )}
       >
+        <div className="flex h-14 w-fit items-center justify-between align-middle">
+          <div>
+            <label className={cn("text-sm font-light")}>twitter</label>-
+            <label className={cn("text-lg font-bold")}>Semantic</label>-
+            <label className={cn("text-lg font-bold")}>Search</label>
+          </div>
+        </div>
+        <label className={cn("text-sm", "underline decoration-dashed")}>
+          Elon Musk
+        </label>
         <div
           className={cn(
-            "flex w-full items-center justify-between align-middle",
-            " px-2",
-            "font-medium",
+            "flex h-14 w-fit items-center justify-between align-middle",
           )}
         >
-          <div className={cn("flex items-center")}>
-            <label className={cn("text-sm")}>Hello,&nbsp;</label>
-            {status == "loading" ? (
-              <LoadingDots />
-            ) : (
-              <label
-                className={cn(
-                  "text-sm",
-                  session?.user?.email && "underline decoration-dashed",
-                )}
-              >
-                {session?.user?.email
-                  ? session?.user?.email.split("@")[0]
-                  : "stranger"}
-              </label>
+          <div
+            className={cn(
+              "flex w-full items-center justify-between align-middle",
+              " px-2",
+              "font-medium",
             )}
+          >
+            <div className={cn("flex items-center")}>
+              {/* <label className={cn("text-sm")}>Hello,&nbsp;</label> */}
+              {/* <label className={cn("text-sm", "underline decoration-dashed")}>
+                stranger
+              </label> */}
+            </div>
           </div>
           <button
             aria-label="Toggle Dark Mode"
             type="button"
             className={cn(
-              "flex h-9 w-9 items-center justify-center",
+              "flex h-9 w-14 items-center justify-center",
               // "bg-gray-200",
               "rounded-lg",
+              "border-silver border",
               "transition-all",
             )}
             onClick={_handleModeClick}
@@ -86,9 +91,9 @@ const HeaderIsland: React.FC = () => {
                 className="h-5 w-5 text-gray-800"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                 ></path>
               </svg>
@@ -101,46 +106,16 @@ const HeaderIsland: React.FC = () => {
                 className="h-5 w-5 text-gray-800"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                 ></path>
               </svg>
             )}
           </button>
         </div>
-
-        <div
-          className={cn("relative inline-block", "border-l border-slate-900")}
-        >
-          <button
-            type="button"
-            className={cn(
-              "h-10 w-16 justify-center",
-              "px-2 py-2",
-              "text-sm font-medium text-gray-900",
-              "hover:bg-gray-50",
-              "focus:outline-none",
-            )}
-            aria-expanded="true"
-            aria-haspopup="true"
-            onClick={_handleClick}
-          >
-            {status == "loading" ? (
-              <LoadingDots />
-            ) : (
-              <>{session?.user?.email ? "Signout" : "Login"}</>
-            )}
-          </button>
-        </div>
       </div>
-      <style jsx>{`
-        nav {
-          display: flex;
-          align-items: center;
-        }
-      `}</style>
       <style jsx global>
         {`
           html {

@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import Script from "next/script";
 import { Inter } from "@next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { SessionProviderProps } from "next-auth/react";
@@ -14,6 +15,8 @@ interface CustomAppProps extends AppProps {
 const App = ({ Component, pageProps }: CustomAppProps) => {
   return (
     <>
+      <Script src="https://app.lemonsqueezy.com/js/lemon.js" />
+      {/* <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script> */}
       <SessionProvider session={pageProps?.session}>
         <Layout>
           <Component {...pageProps} />

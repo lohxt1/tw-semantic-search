@@ -10,6 +10,7 @@ import {
   AppMiddleware,
 } from "@/lib/middleware";
 import { parse } from "@/lib/middleware/utils";
+import { getRateLimitMiddlewares } from "./lib/middleware/ratelimit";
 
 export const config = {
   matcher: [
