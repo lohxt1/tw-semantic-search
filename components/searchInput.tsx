@@ -80,7 +80,7 @@ const SearchInputRoot = ({
         )}
       </div>
       <input
-        placeholder="What do you think about SpaceX ?"
+        placeholder="Are you a Democrat or a Republican ?"
         value={text}
         onChange={(e) => setText(e.target.value)}
         className={cn(
