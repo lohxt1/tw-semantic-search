@@ -47,10 +47,11 @@ const HeaderIsland: React.FC = () => {
             <label className={cn("text-lg font-bold")}>Semantic</label>-
             <label className={cn("text-lg font-bold")}>Search</label>
           </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{`->`}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label className={cn("text-sm", "underline decoration-dashed")}>
+            Elon Musk
+          </label>
         </div>
-        <label className={cn("text-sm", "underline decoration-dashed")}>
-          Elon Musk
-        </label>
         <div
           className={cn(
             "flex h-14 w-fit items-center justify-between align-middle",
