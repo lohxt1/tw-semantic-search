@@ -15,6 +15,7 @@ const SearchInput = () => {
 
   const _handleSubmit = async (text) => {
     if (text.trim().length <= 0) return;
+    if (isLoading) return;
 
     let newSearch = {
       id: nanoid(),
@@ -36,12 +37,13 @@ const SearchInput = () => {
       }).then((res) => res.json());
 
       setResults(response?.data);
-      toggleLoading(false);
     } catch (e) {
       // If the API errors, the original data will be
       // rolled back by SWR automatically.
       console.log(e);
     }
+
+    toggleLoading(false);
   };
 
   return <SearchInputRoot handleSubmit={_handleSubmit} loading={isLoading} />;
