@@ -84,7 +84,7 @@ const SearchResultsRoot = ({ results: tweets, darkMode, areResultsEmpty }) => {
         >
           {areResultsEmpty
             ? "Wow! so empty"
-            : "Try decreasing the tweet length limit."}
+            : "Try decreasing the tweet length limit or Turn on Replies"}
         </div>
       )}
     </div>
