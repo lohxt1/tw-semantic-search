@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }: CustomAppProps) => {
 
   useEffect(() => {
     Fathom.load("XHWSZGQP", {
-      includedDomains: ["lohxt.space"],
+      includedDomains: ["twitsema.vercel.app"],
     });
 
     function onRouteChangeComplete() {
